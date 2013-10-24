@@ -1,25 +1,29 @@
-/*
- Utilities
- */
-function $(id) {
-  return document.getElementById(id);
-}
-function bind(scope, fn) {
-  return function() {
-    fn.apply(scope, arguments);
-  }
-}
-
 /**
  @namespace GOBAN
  */
 var GOBAN = GOBAN || {};
+
 // constants
 var EMPTY = 0;
 var BLACK = 1;
 var WHITE = 2;
 var BORDER = 3;
 var CHECKED = 4;
+
+/*
+ Utilities
+ */
+GOBAN.Utils = {
+  $: function(id) {
+    return document.getElementById(id);
+  },
+  bind: function(scope, fn) {
+    return function() {
+      return fn.apply(scope, arguments);
+    }
+  }
+};
+
 /**
  @namespace GOBAN
  @class Point
@@ -62,7 +66,7 @@ GOBAN.CanvasView.prototype = {
     
     this._drawBoard();
     
-    this.canvas.addEventListener("click", bind(this, this._onCanvasClick), false);
+    this.canvas.addEventListener("click", GOBAN.Utils.bind(this, this._onCanvasClick), false);
   },
   // Draw stones
   drawBlack: function(x, y) {
@@ -171,7 +175,7 @@ GOBAN.CanvasView.prototype = {
 
 /**
  @namespace GOBAN
- @class Controller
+ @class Board
  */
 GOBAN.Board = function() {
   this.initialize.apply(this, arguments);
@@ -360,7 +364,7 @@ GOBAN.Controller.prototype = {
     this.board = board;
     this.history = [];
     this.current = -1;
-    this.view.onClick = bind(this, this.onViewClick);
+    this.view.onClick = GOBAN.Utils.bind(this, this.onViewClick);
   },
   onViewClick: function(p) {
     var result = this.board.put(p);
@@ -431,9 +435,9 @@ GOBAN.Controller.prototype = {
   // private methods
   //
   _updateControl: function() {
-    $("current").innerHTML = this.current + 1;
-    $("black_prisoner").innerHTML = this.board.prisoners[BLACK];
-    $("white_prisoner").innerHTML = this.board.prisoners[WHITE];
+    GOBAN.Utils.$("current").innerHTML = this.current + 1;
+    GOBAN.Utils.$("black_prisoner").innerHTML = this.board.prisoners[BLACK];
+    GOBAN.Utils.$("white_prisoner").innerHTML = this.board.prisoners[WHITE];
   },
   _putAndRemove: function(stone, prisoners) {
     // draw stone
