@@ -11,10 +11,10 @@
     function init() {
       var canvas = document.getElementById('goban');
       var controller = new GOBAN.Controller(new GOBAN.CanvasView(canvas), new GOBAN.Board());
-      $("previous").onclick = bind(controller, controller.onPrevious);
-      $("next").onclick = bind(controller, controller.onNext);
-      $("beginning").onclick = bind(controller, controller.onBeginning);
-      $("last").onclick = bind(controller, controller.onLast);
+      GOBAN.Utils.$("previous").onclick = GOBAN.Utils.bind(controller, controller.onPrevious);
+      GOBAN.Utils.$("next").onclick = GOBAN.Utils.bind(controller, controller.onNext);
+      GOBAN.Utils.$("beginning").onclick = GOBAN.Utils.bind(controller, controller.onBeginning);
+      GOBAN.Utils.$("last").onclick = GOBAN.Utils.bind(controller, controller.onLast);
     }
   </script>
 </head>
