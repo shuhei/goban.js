@@ -9,13 +9,25 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'traceur'],
 
+    preprocessors: {
+      'src/**/*.js': ['traceur'],
+      'test/**/*_spec.js': ['traceur']
+    },
+
+    traceurPreprocessor: {
+      options: {
+        sourceMap: false,
+        modules: 'register'
+      }
+    },
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.js',
-      'test/*.js'
+      'src/**/*.js',
+      'test/**/*_spec.js',
+      'test/suite.js'
     ],
 
 
@@ -54,7 +66,10 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome', 'Firefox', 'Safari'],
+    //
+    // FIXME: traceur-runtime.js doens't work right now.
+    // https://github.com/karma-runner/karma-traceur-preprocessor/issues/1
+    browsers: ['Chrome'],
 
 
     // If browser does not capture in given timeout [ms], kill it
