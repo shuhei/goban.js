@@ -5,21 +5,19 @@
 Install tools.
 
 ```
-npm install -g grunt-cli
-npm install -g bower
+npm install -g gulp
 ```
 
 Install dependencies.
 
 ```
 npm install
-bower install
 ```
 
 Launch development server.
 
 ```
-grunt connect:server:keepalive
+gulp server
 ```
 
 ## Test
@@ -27,5 +25,11 @@ grunt connect:server:keepalive
 Run unit tests with karma.
 
 ```
-npm test
+gulp test
+```
+
+Watch file changes and run tests.
+
+```
+gulp watch
 ```
