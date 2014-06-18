@@ -2,12 +2,20 @@ import { EMPTY, BLACK, WHITE, BORDER, CHECKED } from './constants';
 import { $, bind } from './utils';
 
 export default class Controller {
-  constructor(view, board) {
+  constructor(view, control, board) {
     this.view = view;
+    this.control = control;
     this.board = board;
     this.history = [];
     this.current = -1;
+
+    // TODO: Use event.
     this.view.onClick = bind(this, this.onViewClick);
+
+    this.control.addEventListener('previous', bind(this, this.onPrevious));
+    this.control.addEventListener('next', bind(this, this.onNext));
+    this.control.addEventListener('beginning', bind(this, this.onBeginning));
+    this.control.addEventListener('last', bind(this, this.onLast));
   }
 
   onViewClick(p) {
@@ -83,9 +91,9 @@ export default class Controller {
   // private methods
   //
   _updateControl() {
-    $("current").innerHTML = this.current + 1;
-    $("black_prisoner").innerHTML = this.board.prisoners[BLACK];
-    $("white_prisoner").innerHTML = this.board.prisoners[WHITE];
+    this.control.current = this.current + 1;
+    this.control.blaskPrisoner = this.board.prisoners[BLACK];
+    this.control.whitePrisoner = this.board.prisoners[WHITE];
   }
 
   _putAndRemove(stone, prisoners) {

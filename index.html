@@ -9,14 +9,16 @@
   <p>A Go board implementation with only HTML5 canvas and Javascript code. I'm not sure whether it works on MSIE or not. Maybe not.</p>
 
   <canvas id="goban" width="420" height="420">Your browser does not support the canvas tag.</canvas>
-  <p>
-    <button type="button" id="beginning">&lt;&lt;</button>
-    <button type="button" id="previous">&lt;</button>
-    <span id="current">0</span>
-    <button type="button" id="next">&gt;</button>
-    <button type="button" id="last">&gt;&gt;</button>
+  <div id="control">
+    <p>
+      <button type="button" class="button-beginning">&lt;&lt;</button>
+      <button type="button" class="button-previous">&lt;</button>
+      <span class="current-count">0</span>
+      <button type="button" class="button-next">&gt;</button>
+      <button type="button" class="button-last">&gt;&gt;</button>
+    </p>
+    <p>Black:<span class="black-prisoner">0</span> White:<span class="white-prisoner">0</span></p>
   </p>
-  <p>Black:<span id="black_prisoner">0</span> White:<span id="white_prisoner">0</span></p>
 
   <script src="./dist/traceur-runtime.js"></script>
   <script src="./dist/bundle.js"></script>

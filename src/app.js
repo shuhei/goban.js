@@ -1,17 +1,10 @@
 import Controller from 'controller';
 import CanvasView from 'canvas-view';
+import ControlView from 'control-view';
 import Board from 'board';
-import { $, bind } from 'utils';
 
-var canvas = window.document.getElementById('goban');
-
-var view = new CanvasView(canvas);
+var canvasView = new CanvasView(document.getElementById('goban'));
+var controlView = new ControlView(document.getElementById('control'));
 var board = new Board();
 
-var controller = new Controller(view, board);
-
-// TODO: Define ControlView and emit events from it.
-$("previous").onclick = bind(controller, controller.onPrevious);
-$("next").onclick = bind(controller, controller.onNext);
-$("beginning").onclick = bind(controller, controller.onBeginning);
-$("last").onclick = bind(controller, controller.onLast);
+var controller = new Controller(canvasView, controlView, board);
