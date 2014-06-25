@@ -1,4 +1,6 @@
-export default class ControlView {
+import Emitter from './emitter';
+
+class ControlView extends Emitter {
   constructor(element) {
     this.previous = element.getElementsByClassName('button-previous')[0];
     this.next = element.getElementsByClassName('button-next')[0];
@@ -25,20 +27,6 @@ export default class ControlView {
       var e = new Event('last');
       this.dispatchEvent(e);
     });
-
-    this.handlers = [];
-  }
-
-  addEventListener(type, handler) {
-    this.handlers[type] = this.handlers[type] || [];
-    this.handlers[type].push(handler);
-  }
-
-  dispatchEvent(event) {
-    var handlers = this.handlers[event.type] || [];
-    handlers.forEach((handler) => {
-      handler.apply(this, event);
-    });
   }
 
   set currentCount(count) {
@@ -53,3 +41,6 @@ export default class ControlView {
     this._whitePrisoner.innerHTML = prisoner;
   }
 }
+
+// HACK: export default and extends don't work together at this time.
+export default ControlView;
