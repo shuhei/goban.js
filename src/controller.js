@@ -91,8 +91,8 @@ export default class Controller {
   // private methods
   //
   _updateControl() {
-    this.control.current = this.current + 1;
-    this.control.blaskPrisoner = this.board.prisoners[BLACK];
+    this.control.currentCount = this.current + 1;
+    this.control.blackPrisoner = this.board.prisoners[BLACK];
     this.control.whitePrisoner = this.board.prisoners[WHITE];
   }
 

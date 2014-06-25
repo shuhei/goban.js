@@ -30,7 +30,7 @@ class ControlView extends Emitter {
   }
 
   set currentCount(count) {
-    this._curerntCount.innerHTML = count;
+    this._currentCount.innerHTML = count;
   }
 
   set blackPrisoner(prisoner) {
